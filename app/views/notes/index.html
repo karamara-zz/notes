@@ -1,0 +1,55 @@
+<html>
+  <head>
+  <link rel="stylesheet" type="text/css" href={{url_for('static', filename='css/styles.css')}}>
+  <title>Main Page</title>
+	<meta name='viewport' content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.min.css')}}">
+	<script src={{url_for('static', filename='js/jquery-1.11.3.js')}}></script>
+	<script src="{{url_for('static',filename='js/bootstrap.min.js')}}"></script>
+  <script>
+    $(document).ready(function(){
+      $(document).on('submit','#addNote',function(){
+        $.post('/notes/add',$(this).serialize(),function(res){
+          $('#note').html(res);
+          $('#addNote input').val("");
+        });
+        return false;
+      });
+      $(document).on('submit','#delete',function(){
+        var noteId=$(this).attr('noteid')
+        $.post('/notes/delete/'+noteId,$(this).serialize(),function(res){
+          $('#note').html(res);
+        });
+        return false;
+      });
+      $(document).on('focusout','#update',function(){
+        var noteId=$(this).attr('noteid')
+        $.post('/notes/update/'+noteId,$(this).serialize(),function(res){
+          $('#note').html(res);
+        });
+        return false;
+      });
+    });
+  </script>
+  </head>
+  <body>
+  <div id="container" class='container'>
+    <h3>Notes</h3>
+    <div id="note">
+    {% for note in notes %}
+      <h2>{{note['title']}}</h2>
+      <form id='update' noteid='{{note['id']}}'>
+        <textarea name='contents' placeholder='Enter description here...'>{% if note['content'] %}{{note['content']}}{% endif %}</textarea>
+      </form>
+      <form id='delete' noteid='{{note['id']}}' >
+        <button type='form'>delete</button>
+      </form>
+    {% endfor %}
+  </div>
+    <form id='addNote'  method='post'>
+      <input type='text' name='addTitle' placeholder='Insert note title here ...'/>
+      <button type='submit' class='btn btn-primary'>Add Note</button>
+    </form>
+  </div>
+  </body>
+</html>
