@@ -3,7 +3,7 @@
       <form id='update' noteid='{{note['id']}}'>
         <textarea name='contents' placeholder='Enter description here...'>{% if note['content'] %}{{note['content']}}{% endif %}</textarea>
       </form>
-      <form id='delete' noteid='{{note['id']}}' >
+      <form class='delete' noteid='{{note['id']}}' >
         <button type='form'>delete</button>
       </form>
     {% endfor %}

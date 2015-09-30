@@ -4,7 +4,7 @@
   <title>Main Page</title>
 	<meta name='viewport' content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.min.css')}}">
-	<script src={{url_for('static', filename='js/jquery-1.11.3.js')}}></script>
+	<script src="{{url_for('static', filename='js/jquery-1.11.3.js')}}"></script>"
 	<script src="{{url_for('static',filename='js/bootstrap.min.js')}}"></script>
   <script>
     $(document).ready(function(){
@@ -42,13 +42,13 @@
         <textarea name='contents' placeholder='Enter description here...'>{% if note['content'] %}{{note['content']}}{% endif %}</textarea>
       </form>
       <form id='delete' noteid='{{note['id']}}' >
-        <button type='form'>delete</button>
+        <button class='btn btn-default btn-lg' type='form'>delete</button>
       </form>
     {% endfor %}
   </div>
     <form id='addNote'  method='post'>
       <input type='text' name='addTitle' placeholder='Insert note title here ...'/>
-      <button type='submit' class='btn btn-primary'>Add Note</button>
+      <button type='submit' class='btn btn-success btn-lg'>Add Note</button>
     </form>
   </div>
   </body>

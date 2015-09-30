@@ -1,5 +1,5 @@
-* {
-  font-family: monaco;
+body{
+	background-color: orange;
 }
 textarea{
 	width:250px;
