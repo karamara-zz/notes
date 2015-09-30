@@ -22,7 +22,7 @@
         });
         return false;
       });
-      $(document).on('focusout','#update',function(){
+      $(document).on('keyup focusout','#update',function(){
         var noteId=$(this).attr('noteid')
         $.post('/notes/update/'+noteId,$(this).serialize(),function(res){
           $('#note').html(res);

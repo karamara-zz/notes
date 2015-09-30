@@ -20,7 +20,7 @@ class Notes(Controller):
 		content= request.form['contents']
 		print content
 		self.models['Note'].update(content,id)
-		return redirect('notes/partial')
+		return nothing
 	def partial(self):
 		notes=self.models['Note'].get_all()
 		return self.load_view('/partials/partial.html', notes=notes)
